@@ -5,7 +5,7 @@ import Peer from 'peerjs'
 
 export default params => {
 
-  const {serverConf, handleData,handleOpen,handleRemotePeerConnection,handleCall,handleError} = params;
+  const {config, handleData,handleOpen,handleRemotePeerConnection,handleCall,handleError} = params;
 
   const {host,port, path, key,debug} =serverConf;
 
@@ -15,7 +15,7 @@ export default params => {
   const [peerJSInstance,setPeerJSInstance] = useState()
 
   useEffect(()=>{
-      const _peer=new Peer({host: '192.168.64.176', port: 8712, path: '/',debug:0,key:'peerjs'});
+      const _peer=new Peer({host, port, path,debug,key});
       setConnecting(true)
       _peer.on('open', (id)=> {
         setId(id)
