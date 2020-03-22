@@ -1,18 +1,19 @@
 {
   "name": "@geekagency/peerjs-react-hooks",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "description": "Hooks for handling PeerJS in react",
   "main": "cjs/index.js",
   "scripts": {
-    "pub": "npm run publish:react; npm run publish:preact",
     "pack:preact": "copyfiles -f src/{export,usePeerJS,usePeerConnection,useConnectToRemoteId}.js  dist/preact/; copyfiles -f src/preact/*  dist/preact/;",
     "pack:react": "copyfiles -f src/{export,usePeerJS,usePeerConnection,useConnectToRemoteId,react-deps}.js  dist/react/; copyfiles -f ./package.json  dist/react/;",
-    "pack": "npm run pack:preact; npm run pack:react",
+    "pack": "yarn run pack:preact; yarn run pack:react",
     "bundle:preact": "npx rollup -e react,preact,preact/hooks -f cjs --exports named --preserveModules -d dist/preact/cjs dist/preact/*.js",
     "bundle:react": "npx rollup -e react,preact,preact/hooks -f cjs --exports named --preserveModules -d dist/react/cjs dist/react/*.js",
-    "build": "npm run pack:react && npm run pack:preact && npm run bundle:preact && npm run bundle:react",
-    "publish:preact": "cd dist/preact; npm publish",
-    "publish:react": "cd dist/react; npm publish",
+    "bundle":"rollup -c",
+    "build": "yarn run pack && yarn run bundle",
+    "publish:preact": "cd dist/preact; yarn publish --no-git-tag-version",
+    "publish:react": "cd dist/react; yarn publish --no-git-tag-version",
+    "publish": "yarn run publish:preact; yarn run publish:react",
     "test": "npx jest --coverage && npx jest-coverage-badges"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@geekagency/peerjs-preact-hooks",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "description": "Hooks for handling forms in preact",
   "main": "cjs/index.js"
 }
